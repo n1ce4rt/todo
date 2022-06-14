@@ -41,22 +41,29 @@ export const tasks_reducer = (state: initialStateType = initialState, action: ac
         
         case 'SET_STATUS' : 
 
-            return {...state, tasks: state.tasks.map((task) => task.id === action.taskId ? {...task, status: task.status === 'done' ? 'progress' : 'done'} : {...task})}
-
+            return {...state, tasks: state.tasks.map((task) => task.id === action.taskId? {...task, status: task.status === 'done' ? 'progress' : 'done'} : task)}
+        case 'RENAME_TASK' : 
+            return {...state, tasks: state.tasks.map((task) => task.id === action.taskId? {...task, header: action.newHeader} : task)}
         default:
             return state
     }
 
 
 }
+export const renameTaskAC = (taskId: string, newHeader: string): renameTaskACType => ({type: 'RENAME_TASK', taskId, newHeader} as const)
 export const setNewTaskAC = (task: taskType): setNewTaskACType => ({type: 'SET_NEW_TASK', task} as const)
 export const deleteTaskAC = (taskId: string): deleteTaskACType => ({type: 'DELETE_TASK', taskId} as const)
 export const getTaskListAC = (tasks : initialStateType): getTaskListACType => ({type: 'GET_TASKS', tasks} as const)
 export const setStatusAC = (taskId: string): setStatusACType => ({ type: 'SET_STATUS', taskId} as const)
 export const setFilterAC = (filter: filterType) :setFilterACType => ({type: 'SET_FILTER', filter} as const)
 
-export type actionType = setNewTaskACType | deleteTaskACType | getTaskListACType | setFilterACType | setStatusACType;
+export type actionType = setNewTaskACType | deleteTaskACType | getTaskListACType | setFilterACType | setStatusACType | renameTaskACType;
 
+export type renameTaskACType = {
+    type: 'RENAME_TASK'
+    taskId: string,
+    newHeader: string
+}
 export type setStatusACType = {
     type: 'SET_STATUS', 
     taskId: string
