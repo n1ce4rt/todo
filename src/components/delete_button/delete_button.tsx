@@ -16,11 +16,10 @@ export const DeleteButton= ({taskId}: propsType) => {
     return (
         <IconButton 
         aria-label="delete"
-        size='large'
         color='error'
         onClick={()=> dispatch(deleteTaskAC(taskId))}>
             <Tooltip title="Delete" placement="right">
-                <DeleteIcon  fontSize='medium'/>
+                <DeleteIcon fontSize='medium'/>
             </Tooltip>
         </IconButton>
     )
