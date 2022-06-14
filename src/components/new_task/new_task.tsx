@@ -1,11 +1,10 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { useDispatch, useSelector } from 'react-redux';
-import { setNewTaskAC } from '../../reducers/tasks-reducer';
+import { useDispatch} from 'react-redux';
+import { setNewTaskAC, taskType } from '../../reducers/tasks-reducer';
 import { AddButton } from '../add_button/add_button';
 import { v1 } from 'uuid';
-import { rootReducerType } from '../../store/store-redux';
 
 
 
@@ -13,12 +12,13 @@ export const NewTask = () => {
 
 
     const [newTask, setNewTask] = React.useState('');
+
     const dispatch = useDispatch();
-    const tasks = useSelector((state: rootReducerType) => state.tasks)
-    const newOne = {
-      header: newTask,
-      id: v1(),
-      status: false
+
+    const task: taskType = {
+      header: newTask, 
+      id: v1(), 
+      status: 'progress',
   }
 
   return (
@@ -30,12 +30,30 @@ export const NewTask = () => {
       autoComplete="off"
     >
       <TextField
+      sx={{
+        '& label.Mui-focused': {
+          color: '#2CA5A9',
+        },
+        '& .MuiInput-underline:after': {
+          borderBottomColor: '#2CA5A9',
+        },
+        '& .MuiOutlinedInput-root': {
+          '& fieldset': {
+            borderColor: '#2CA5A9',
+          },
+          '&:hover fieldset': {
+            borderColor: '#013F56',
+          },
+          '&.Mui-focused fieldset': {
+            borderColor: '#2CA5A9',
+          },
+        },
+      }}
       id="outlined-basic" label="Input new task" variant="outlined" 
           onKeyPress={(e) => {
             if(e.key === 'Enter') {
                 e.preventDefault()
-                dispatch(setNewTaskAC({header: newTask, id: v1(), status: 'progress'}))
-                // localStorage.setItem('tasks', JSON.stringify(tasks))
+                dispatch(setNewTaskAC(task))
                 setNewTask('')
             }
           }}
@@ -45,7 +63,6 @@ export const NewTask = () => {
           
           }}
           value={newTask}
-          onReset={()=> true}
           />
 
       <AddButton

@@ -1,8 +1,9 @@
-import { Button } from '@mui/material';
+import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch } from 'react-redux';
 import { deleteTaskAC } from '../../reducers/tasks-reducer';
-
+import { useState } from 'react';
+import Tooltip from '@mui/material/Tooltip';
 
 
 type propsType = {
@@ -10,14 +11,17 @@ type propsType = {
 }
 export const DeleteButton= ({taskId}: propsType) => {
 
-
+   
     const dispatch = useDispatch();
     return (
-        <Button sx={{ padding: '5px',color: '#922858', borderColor: '#922858', '&:hover' : { borderColor: '#922858'}}} variant="outlined" startIcon={<DeleteIcon />}
-        
-        onClick={()=> {
-            dispatch(deleteTaskAC(taskId))
-        }}
-        ></Button>
+        <IconButton 
+        aria-label="delete"
+        size='large'
+        color='error'
+        onClick={()=> dispatch(deleteTaskAC(taskId))}>
+            <Tooltip title="Delete" placement="right">
+                <DeleteIcon  fontSize='medium'/>
+            </Tooltip>
+        </IconButton>
     )
 }

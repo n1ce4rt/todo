@@ -4,12 +4,12 @@
 
 
 
-export type statusType = 'done' | 'progress'
+export type statusType = 'done' | 'progress';
 export type filterType = 'all' | 'done' | 'progress'
 export type taskType = {
     id: string,
     header: string
-    status: statusType
+    status: statusType 
 }
 export type initialStateType = {
     tasks: Array<taskType>
@@ -26,13 +26,13 @@ export const tasks_reducer = (state: initialStateType = initialState, action: ac
 
         case 'SET_NEW_TASK':
             
-            return {...state, tasks: [...state.tasks, action.task] }
+            return {...state, tasks: [ action.task, ...state.tasks] }
 
         case 'DELETE_TASK':
             return {...state, tasks: state.tasks.filter((task) => task?.id !== action.taskId)}
 
         case 'GET_TASKS' : 
-            debugger
+
             return {...action.tasks}
 
         case 'SET_FILTER' :
@@ -40,7 +40,7 @@ export const tasks_reducer = (state: initialStateType = initialState, action: ac
             return {...state, filter: action.filter}
         
         case 'SET_STATUS' : 
-            debugger
+
             return {...state, tasks: state.tasks.map((task) => task.id === action.taskId ? {...task, status: task.status === 'done' ? 'progress' : 'done'} : {...task})}
 
         default:

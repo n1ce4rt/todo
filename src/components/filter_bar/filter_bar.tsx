@@ -17,7 +17,7 @@ export const FilterBar = () => {
                     
                     backgroundColor: active === 'all'? '#013F56' : '#2CA5A9',
                     '&:hover': {
-                        background: '#2CA5A9',
+                        background: '#013F56',
                     },
                     
                 
@@ -27,14 +27,14 @@ export const FilterBar = () => {
     
                 <Button variant='contained' sx={{backgroundColor: active === 'progress'? '#013F56' : '#2CA5A9',
                 '&:hover': {
-                    background: '#2CA5A9',
+                    background: '#013F56',
                 },}}
                      onClick={()=> dispatch(setFilterAC('progress'))}
                 >Progress</Button>
     
                 <Button variant='contained' sx={{backgroundColor: active === 'done'? '#013F56' : '#2CA5A9',
                 '&:hover': {
-                        background: '#2CA5A9',
+                        background: '#013F56',
                     }}}
                      onClick={()=> dispatch(setFilterAC('done'))}
                 >Done</Button>
