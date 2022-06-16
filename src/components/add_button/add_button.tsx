@@ -29,7 +29,7 @@ export const AddButton = ({newTask, setNewTask} : propsType) => {
           if(tasks.some(comparison)) {
             dispatch(setStatusAC(true))
           } else {
-            dispatch(setNewTaskAC({header: newTask, id: v1(), status: 'progress'}))
+            dispatch(setNewTaskAC({header: newTask, id: v1(), completed: false}))
             setNewTask('')
           }
           

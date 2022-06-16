@@ -4,12 +4,12 @@
 
 
 
-export type statusType = 'done' | 'progress';
+
 export type filterType = 'all' | 'done' | 'progress'
 export type taskType = {
     id: string,
     header: string
-    status: statusType 
+    completed: boolean
 }
 export type initialStateType = {
     tasks: Array<taskType>
@@ -41,7 +41,7 @@ export const tasks_reducer = (state: initialStateType = initialState, action: ac
         
         case 'SET_STATUS' : 
 
-            return {...state, tasks: state.tasks.map((task) => task.id === action.taskId? {...task, status: task.status === 'done' ? 'progress' : 'done'} : task)}
+            return {...state, tasks: state.tasks.map((task) => task.id === action.taskId? {...task, completed: !task.completed} : task)}
         case 'RENAME_TASK' : 
             return {...state, tasks: state.tasks.map((task) => task.id === action.taskId? {...task, header: action.newHeader} : task)}
         default:

@@ -12,10 +12,12 @@ export const TasksList = () => {
     const filter = useSelector((state: rootReducerType): filterType  => state.tasks.filter)
     let filterTasks = tasks.filter((task: taskType) => task)
 
-    if (filter !== 'all') {
-      filterTasks = tasks.filter((task: taskType) => task.status === filter)
+    if (filter === 'done') {
+      filterTasks = tasks.filter((task: taskType) => task.completed)
+    } 
+    if (filter === 'progress') {
+      filterTasks = tasks.filter((task: taskType) => !task.completed)
     }
-    
   return (
       <Box sx={{ flexGrow: 1}}>
         <AnimatePresence>
