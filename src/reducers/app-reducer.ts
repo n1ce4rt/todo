@@ -1,7 +1,7 @@
 const SET_STATUS = 'SET_STATUS'
 
 const initialAppState: initialAppStateType = {
-    status: 'nice'
+    status: false
 }
 
 export const app_reducer = (state: initialAppStateType = initialAppState, action: appActionType): initialAppStateType => {
@@ -17,7 +17,7 @@ export const setStatusAC = (status: statusType): setStatusACType => ({type: SET_
 export type initialAppStateType = {
     status: statusType
 }
-export type statusType = 'loading' | 'nice' | 'some'
+export type statusType = boolean
 
 export type appActionType = setStatusACType
 

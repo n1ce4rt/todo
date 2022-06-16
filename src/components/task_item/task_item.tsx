@@ -37,7 +37,7 @@ export const TaskItem = ({task} : propsType) => {
               {...variants}>
             <Card sx={{display: 'flex', minWidth: 'fit-content', justifyContent: 'space-between', margin: '10px 0 0 0', background: '#D5D1D0'}}>
               <Tooltip title="Done" placement="left">
-                <IconButton sx={{width: '55px'}} onClick={() => dispatch(setStatusAC(task.id))}>
+                <IconButton onClick={() => dispatch(setStatusAC(task.id))}>
                   <CheckIcon fontSize={'large'} sx={{color: task.status === 'done'? '#922858' : '' ,}}/>
                 </IconButton>
               </Tooltip>

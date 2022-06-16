@@ -8,9 +8,12 @@ import { NewTask } from './components/new_task/new_task';
 import { TasksList } from './components/tasks_list/tasks_list';
 import Container from '@mui/material/Container';
 import { FilterBar } from './components/filter_bar/filter_bar';
+import { CustomizedSnackbars } from './components/snackbar/snackbar';
+import { useSelector } from 'react-redux';
+import { rootReducerType } from './store/store-redux';
 
 function App() {
-
+  const visible = useSelector((state: rootReducerType) : boolean => state.status.status)
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -29,6 +32,9 @@ function App() {
           <NewTask />
           <TasksList />
         </Box>
+        {
+          visible ? <CustomizedSnackbars /> : undefined
+        }
       </Container>
 
     </>
