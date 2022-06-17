@@ -1,16 +1,19 @@
-import { TextField } from "@mui/material"
+import { TextField} from "@mui/material"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { renameTaskAC } from "../../reducers/tasks-reducer"
-
+import style from './rename_input.module.css'
 
 type propsType = {
+    active: boolean
+    setActive: (status: boolean) => void
     header: string
     taskId: string
+    complated: boolean
 }
-export const RenameInput = ({taskId, header} : propsType) => {
+export const RenameInput = ({active, setActive,taskId, header, complated} : propsType) => {
 
-    const [active, setActive] = useState(false)
+    // const [active, setActive] = useState(false)
     const [newValue, setNewValue] = useState(header)
     const dispatch = useDispatch();
 
@@ -45,5 +48,6 @@ export const RenameInput = ({taskId, header} : propsType) => {
                 onKeyPress={(e) => e.key === 'Enter' && rename()}
             ></TextField>
             :
-            <p onDoubleClick={()=> setActive(true)}>{header}</p>
+            <p className={complated? style.done: ''} onDoubleClick={()=> setActive(true)}>{header}</p>
+            
 }

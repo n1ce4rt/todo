@@ -1,18 +1,20 @@
 import { IconButton } from '@mui/material';
-import { useDispatch } from 'react-redux';
 import Tooltip from '@mui/material/Tooltip';
 import CreateIcon from '@mui/icons-material/Create';
 
 
-
-export const RenameBtn = () => {
+type propsType = {
+    setActive: (status: boolean) => void
+}
+export const RenameBtn = ({setActive}: propsType) => {
 
     return (
         <IconButton 
         size='large'
-        color='error'>
-            <Tooltip title="Rename" placement="right">
-                <CreateIcon  fontSize='medium'/>
+        color='success'
+        onClick={()=> setActive(true)}>
+            <Tooltip title="Rename" placement="left">
+                <CreateIcon  fontSize='medium' />
             </Tooltip>
         </IconButton>
     )

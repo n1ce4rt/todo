@@ -22,7 +22,7 @@ export const TasksList = () => {
       <Box sx={{ flexGrow: 1}}>
         <AnimatePresence>
           {
-            filterTasks.map((task: taskType) => <TaskItem key={task.id} task={task}/>)
+            filterTasks.map((task: taskType) => <TaskItem key={task.id} task={task} complated={task.completed}/>)
           }
         </AnimatePresence>
       </Box>
